@@ -4,7 +4,7 @@
             "autorestart": false,
             "watch": false,
             "max_memory_restart": "2G",
-            "name": "CMSWing",
+            "name": "middle-service",
             "cwd": "./",
             "script": "./dist/main.js",
             "instances": "1",
