@@ -1,9 +1,9 @@
 import { Schema, Mongoose, model } from "mongoose";
 
-export const CategorysSchema = new Schema(
+export const CategorySchema = new Schema(
     {
-        categorysCode: { type: Number },
-        categorysName: { type: String }
+        categoryCode: { type: Number },
+        categoryName: { type: String }
     },
     {
         //不需要默认__v版本号字段
