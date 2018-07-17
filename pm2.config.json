@@ -3,7 +3,7 @@
         {
             "autorestart": false,
             "watch": false,
-            "max_memory_restart": "2G",
+            "max_memory_restart": "1G",
             "name": "middle-service",
             "cwd": "./",
             "script": "./dist/main.js",

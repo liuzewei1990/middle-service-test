@@ -1,14 +1,11 @@
 
 import { Injectable, Inject } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Banks } from "./bank.entity";
-import { SuccessResponseJson, FailResponseJson } from "../../config/responseStatusJson.config";
-
+import { SuccessResponseJson, FailResponseJson } from "config/responseStatusJson.config";
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class BankService {
-    constructor(@InjectRepository(Banks) private readonly banksModle) {
+    constructor(@InjectModel("bank111") private readonly banksModle) {
 
     }
 

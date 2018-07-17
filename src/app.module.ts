@@ -1,28 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { BankModule } from './modules/bank/bank.module';
-import { Banks } from './modules/bank/bank.entity';
-import { Test } from './modules/bank/tset.entity';
-
-
+import { BankModule } from 'modules/bank/bank.module';
+import { MongooseForRootModule } from 'modules/moogodb/mogoose.module';
+import { CategorysModule } from 'modules/categorys/categorys.module';
+import { CountersGlobalModule } from 'modules-global/counters/counters.module';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'mongodb',
-      host: '118.190.113.193',
-      port: 27108,
-      username: 'base',
-      password: 'yeepiao2017',
-      database: 'base',
-      entities: [Banks, Test],
-      synchronize: true,
-    }),
-    BankModule
-  ],
-  controllers: [AppController],
-  providers: [AppService]
+  imports: [MongooseForRootModule, BankModule, CategorysModule, CountersGlobalModule],
+  controllers: [],
+  providers: []
 })
 export class AppModule { }

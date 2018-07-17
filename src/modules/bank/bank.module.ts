@@ -1,11 +1,16 @@
 import { Module } from "@nestjs/common";
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { BankService } from "./bank.service";
+import { MongooseModule } from "@nestjs/mongoose";
+
 import { BankController } from "./bank.controller";
-import { Banks } from "./bank.entity";
+import { BankService } from "./bank.service";
+import { BankSchema } from "./bank.schema";
+
+const MongooseModuleForFeature = MongooseModule.forFeature([
+    { name: "bank111", schema: BankSchema }//可以注入多个Schema
+]);
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Banks])],
+    imports: [MongooseModuleForFeature],
     providers: [BankService],
     controllers: [BankController]
 })
