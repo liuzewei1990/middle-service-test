@@ -9,6 +9,7 @@ const MoogodbTypeOrmModule = TypeOrmModule.forRoot({
     password: '',
     database: 'store',
     entities: [],
+    //typeorm 每次启动都会根据 Entity 自动创建或者修改表的属性结构
     synchronize: true,
 });
 

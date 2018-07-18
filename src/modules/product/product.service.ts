@@ -3,8 +3,8 @@ import { InjectModel } from "@nestjs/mongoose";
 
 
 @Injectable()
-export class ProductsService {
-    constructor(@InjectModel("GoodsModel") private readonly GoodsModel) { }
+export class ProductService {
+    constructor(@InjectModel("ProductModel") private readonly ProductModel) { }
 
 
 }
