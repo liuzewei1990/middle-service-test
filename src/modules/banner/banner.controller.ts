@@ -15,15 +15,15 @@ export class BannerController {
     @UseInterceptors(FileInterceptor("bannerImg", {
         dest: 'uploads/',
         limits: {
-            fileSize: 0.1 * 1024 * 1024,
+            fileSize: 10 * 1024 * 1024,
             preservePath: true
         },
         fileFilter(req, file, callback) {
             console.log(123, file)
-            if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(file.mimetype)) {
-                callback(null, false);
-                return;
-            }
+            // if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(file.mimetype)) {
+            //     callback(Error("类型不符"), false);
+            //     return;
+            // }
             callback(null, true);
         }
     }))
