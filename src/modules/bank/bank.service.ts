@@ -1,6 +1,6 @@
 
 import { Injectable, Inject } from '@nestjs/common';
-import { SuccessResponseJson, FailResponseJson } from "config/responseStatusJson.config";
+import { SuccessResponseJson, FailResponseJson } from "../../config/responseStatusJson.config";
 import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()

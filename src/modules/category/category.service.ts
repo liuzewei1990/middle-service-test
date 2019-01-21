@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { FailResponseJson, SuccessResponseJson } from "config/responseStatusJson.config";
-import { CounterGlobalService } from "modules-global/counters/counters.service";
+import { FailResponseJson, SuccessResponseJson } from "../../config/responseStatusJson.config";
+import { CounterGlobalService } from "../../modules-global/counters/counters.service";
 import { Document, Model } from "mongoose";
 
 interface CategoryInterface extends Document {

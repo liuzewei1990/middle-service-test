@@ -1,5 +1,5 @@
 import { Controller, Get, Post, UseInterceptors, FileInterceptor, UploadedFile } from "@nestjs/common";
-import { FailResponseJson } from "config/responseStatusJson.config";
+import { FailResponseJson } from "../../config/responseStatusJson.config";
 
 
 @Controller("banner")
