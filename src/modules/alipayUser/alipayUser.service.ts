@@ -25,9 +25,6 @@ export class AlipayUserService {
         public async alipayUserAdd(user) {
                 try {
                         if (typeof user["alipayUser"] !== "boolean") return new FailResponseJson("类型不对！");
-                        if (!user["userId"]) return new FailResponseJson("该字段必传");
-                        if (!user["prizeName"]) return new FailResponseJson("该字段必传");
-                        if (!user["prizeFee"]) return new FailResponseJson("该字段必传");
                         if (!user["bindMobile"]) return new FailResponseJson("该字段必传");
                         let AlipayUserModel = await new this.AlipayUserModel(user);
                         AlipayUserModel.save();
