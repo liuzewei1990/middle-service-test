@@ -8,14 +8,9 @@ import { Model, Document } from "mongoose";
 export class AlipayUserService {
         constructor(@InjectModel("alipayUser") private readonly AlipayUserModel: Model<Document>) { }
 
-        public async filtersBanks(keyword) {
+        public async alipayUserFind() {
                 try {
-                        let result = [];
-                        //5个字起搜
-                        if (keyword && keyword.length >= 5) {
-                                const reg = new RegExp(keyword, 'gi');
-                                result = await this.AlipayUserModel.find({ bankName: { $regex: reg } });
-                        }
+                        let result = await this.AlipayUserModel.find({alipayUser:true});
                         return new SuccessResponseJson("查询成功", result);
                 } catch (err) {
                         return new FailResponseJson(err.message);

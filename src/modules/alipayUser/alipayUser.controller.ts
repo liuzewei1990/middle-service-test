@@ -8,9 +8,9 @@ export class AlipayUserController {
         }
 
         @Get()
-        public filterBanks(@Query() { keyword }) {
+        public alipayUserFind(@Query() { keyword }) {
                 try {
-                        return this.AlipayUserService.filtersBanks(keyword);
+                        return this.AlipayUserService.alipayUserFind();
                 } catch (err) {
                         return new ForbiddenException(err);
                 }
