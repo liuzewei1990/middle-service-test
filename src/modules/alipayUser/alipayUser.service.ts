@@ -10,7 +10,7 @@ export class AlipayUserService {
 
         public async alipayUserFind() {
                 try {
-                        let result = await this.AlipayUserModel.find({ alipayUser: true });
+                        let result = await this.AlipayUserModel.find({});
                         return new SuccessResponseJson("查询成功", result);
                 } catch (err) {
                         return new FailResponseJson(err.message);
