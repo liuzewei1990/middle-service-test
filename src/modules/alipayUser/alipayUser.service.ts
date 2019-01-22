@@ -10,7 +10,7 @@ export class AlipayUserService {
 
         public async alipayUserFind() {
                 try {
-                        let result = await this.AlipayUserModel.find({alipayUser:true});
+                        let result = await this.AlipayUserModel.find({ alipayUser: true });
                         return new SuccessResponseJson("查询成功", result);
                 } catch (err) {
                         return new FailResponseJson(err.message);
@@ -19,8 +19,8 @@ export class AlipayUserService {
 
         public async alipayUserAdd(user) {
                 try {
-                        if (typeof user["alipayUser"] !== "boolean") return new FailResponseJson("类型不对！");
-                        if (!user["bindMobile"]) return new FailResponseJson("该字段必传");
+                        if (typeof user["alipayUser"] !== "boolean") return new FailResponseJson("alipayUser类型错误");
+                        if (!user["bindMobile"]) return new FailResponseJson("bindMobile该字段必传");
                         let AlipayUserModel = await new this.AlipayUserModel(user);
                         AlipayUserModel.save();
                         return new SuccessResponseJson("添加成功", AlipayUserModel);

@@ -1,4 +1,4 @@
-import { Controller, Get, ForbiddenException, Body, Query, Post } from "@nestjs/common";
+import { Controller, Get, ForbiddenException, Body, Param, Query, Post, Options, Header, HttpCode } from "@nestjs/common";
 import { AlipayUserService } from "./alipayUser.service";
 
 @Controller("alipayUser")
@@ -8,6 +8,7 @@ export class AlipayUserController {
         }
 
         @Get()
+        @Header('Cache-Control', 'none')
         public alipayUserFind(@Query() { keyword }) {
                 try {
                         return this.AlipayUserService.alipayUserFind();
@@ -17,10 +18,9 @@ export class AlipayUserController {
         }
 
         @Post()
+        @HttpCode(200)
         public alipayUserAdd(@Body() user) {
                 try {
-                        console.log(user)
-
                         return this.AlipayUserService.alipayUserAdd(user);
                 } catch (error) {
                         return new ForbiddenException(error);
