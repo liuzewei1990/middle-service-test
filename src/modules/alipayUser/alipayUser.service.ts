@@ -8,9 +8,9 @@ import { Model, Document } from "mongoose";
 export class AlipayUserService {
         constructor(@InjectModel("alipayUser") private readonly AlipayUserModel: Model<Document>) { }
 
-        public async alipayUserFind() {
+        public async alipayUserFind(query) {
                 try {
-                        let result = await this.AlipayUserModel.find({});
+                        let result = await this.AlipayUserModel.find({ ...query });
                         return new SuccessResponseJson("查询成功", result);
                 } catch (err) {
                         return new FailResponseJson(err.message);

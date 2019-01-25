@@ -9,9 +9,9 @@ export class AlipayUserController {
 
         @Get()
         @Header('Cache-Control', 'none')
-        public alipayUserFind(@Query() { keyword }) {
+        public alipayUserFind(@Query() query) {
                 try {
-                        return this.AlipayUserService.alipayUserFind();
+                        return this.AlipayUserService.alipayUserFind(query);
                 } catch (err) {
                         return new ForbiddenException(err);
                 }
