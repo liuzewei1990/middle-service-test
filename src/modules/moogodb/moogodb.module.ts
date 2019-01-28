@@ -3,8 +3,8 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 
 const MoogodbTypeOrmModule = TypeOrmModule.forRoot({
         type: 'mongodb',
-        host: '47.94.3.28',
-        port: 8060,
+        host: '',
+        port: 0,
         username: '',
         password: '',
         database: 'store',
