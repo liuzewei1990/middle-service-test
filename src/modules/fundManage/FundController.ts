@@ -1,4 +1,4 @@
-import { Controller, Get, All, Post, Body, Delete, Query } from "@nestjs/common";
+import { Controller, Get, All, Post, Body, Delete, Param, Query } from "@nestjs/common";
 import { FundService } from "./FundService";
 
 
@@ -43,6 +43,10 @@ export class FundController {
         return this.FundService.queryCodeAddFundAll(code);
     }
 
+    @Get("/:id")
+    public async requestFundList(@Param() { id }) {
+        return this.FundService.fund(id);
+    }
 
 
 }

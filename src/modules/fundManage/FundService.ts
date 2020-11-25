@@ -114,6 +114,15 @@ export class FundService {
         }
     }
 
+    public async fund(code = "000000") {
+        try {
+            let resData = await this.requestFundList(code);
+            return new SuccessResponseJson("查询成功", resData);
+        } catch (error) {
+            return new FailResponseJson(error.message);
+        }
+    }
+
     /**
      * 根据基金代码查询持仓数据
      * @param code 基金代码
