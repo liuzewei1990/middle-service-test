@@ -15,8 +15,8 @@ export class FundController {
 
     // 添加基金
     @Post("/jz/add")
-    public async addJz(@Body() jz = {}) {
-        return this.FundService.addJz(jz);
+    public async addJz(@Body() { code, name }) {
+        return this.FundService.addJz(code, name);
     }
 
     // 删除基金

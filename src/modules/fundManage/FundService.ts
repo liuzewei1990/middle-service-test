@@ -19,9 +19,15 @@ export class FundService {
     ) { }
 
     // 添加基金
-    public async addJz(jz = {}) {
+    public async addJz(code, name) {
+        if (!(code && name)) return new FailResponseJson("基金代码或基金名称必填！");
         try {
-            let JzModel = await new this.JzModel(jz);
+            let res = await this.JzModel.find({ code });
+            if (res.length !== 0) return new FailResponseJson("已经添加过该基金了");
+
+            let list = await this.requestFundList(code);
+            list = list.sort((a, b) => b.zcCode - a.zcCode);
+            let JzModel = await new this.JzModel({ code, name, list });
             JzModel.save();
             return new SuccessResponseJson("添加成功");
         } catch (error) {

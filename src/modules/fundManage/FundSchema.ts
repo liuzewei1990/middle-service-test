@@ -30,7 +30,7 @@ export const JzSchema = new Schema(
     {
         code: String,
         name: String,
-        addDate: String
+        list: Array
     },
     {
         collection: "jz"
