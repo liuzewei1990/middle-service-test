@@ -15,8 +15,11 @@ export class FundService {
     constructor(
         @InjectModel("JzModel")
         private readonly JzModel: Model<Document>,
+        @InjectModel("FundInfoModel")
+        private readonly FundInfoModel: Model<Document>,
         @InjectModel("FundModel")
         private readonly FundModel: Model<FundInterface>,
+
         private readonly CounterGlobalService: CounterGlobalService,
     ) { }
 
@@ -157,11 +160,24 @@ export class FundService {
 
     public async findFundInfoById(id) {
         try {
-            let resData = await this.requestFundInfoID(id);
+            let resData = {};
+            resData = await this.FundInfoModel.findOne({ code: id });
+
+            if (resData === null) {
+                let result = await this.requestFundInfoID(id);
+                resData = await this.saveFundInfo({ code: id, businessType: result["所属申万行业："] });
+            }
             return new SuccessResponseJson("查询成功", resData);
+
         } catch (error) {
             return new FailResponseJson(error.message);
         }
+    }
+
+    private async saveFundInfo(fundInfo = {}) {
+        let fundInfoModel = await new this.FundInfoModel(fundInfo);
+        fundInfoModel.save();
+        return fundInfoModel;
     }
 
     private async requestFundInfoID(id) {
@@ -198,6 +214,9 @@ export class FundService {
                     result[key] = value;
                 }
             }
+        }
+        if (Object.keys(result).length === 0) {
+            throw new Error(`未查到该${id}股票信息`);
         }
 
         return result;

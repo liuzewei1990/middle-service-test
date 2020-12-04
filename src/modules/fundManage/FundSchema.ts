@@ -26,6 +26,25 @@ export const FundSchema = new Schema(
     }
 );
 
+
+/**
+ * 股票信息
+ */
+export const FundInfoSchema = new Schema(
+    {
+        // 股票代码
+        code: String,
+        // 行业
+        businessType: String
+    },
+    {
+        collection: "fundInfo"
+    }
+);
+
+/**
+ * 基金持仓列表
+ */
 export const JzSchema = new Schema(
     {
         code: String,
