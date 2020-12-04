@@ -5,6 +5,8 @@ import { CounterGlobalService } from "../../modules-global/counters/counters.ser
 import { Document, Model } from "mongoose";
 import { FundInterface } from "./FundInterface";
 import * as request from "request-promise"
+import * as cheerio from "cheerio";
+import * as iconv from "iconv-lite"
 
 
 @Injectable()
@@ -150,6 +152,55 @@ export class FundService {
             throw error;
         }
 
+    }
+
+
+    public async findFundInfoById(id) {
+        try {
+            let resData = await this.requestFundInfoID(id);
+            return new SuccessResponseJson("查询成功", resData);
+        } catch (error) {
+            return new FailResponseJson(error.message);
+        }
+    }
+
+    private async requestFundInfoID(id) {
+        if (id.length !== 6) {
+            throw new Error("股票代码格式错误")
+        }
+
+        let result = {};
+        let url = `http://basic.10jqka.com.cn/${id}/company.html#stockpage`;
+        let options = {
+            url: url,
+            encoding: null,
+            method: 'GET',
+            headers: {
+                'Cache-Control': 'no-cache',
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36",
+            }
+        }
+        let html = await request(options);
+
+        let $ = cheerio.load(iconv.decode(html, 'gb2312'), { decodeEntities: false });
+        // let trs = $("#detail").find(".bd").find(".m_table").eq(0).find("tr").eq(1).find("td").eq(1).find("span").text()
+        let trs = $("#detail").find(".bd").find(".m_table").eq(0).find("tr");
+        // console.log(trs);
+
+        for (let index = 0; index < trs.length; index++) {
+            const element = trs[index];
+            let tds = $(element).find("td");
+            for (let i = 0; i < tds.length; i++) {
+                const element = tds[i];
+                let key = $(element).find("strong").text();
+                let value = $(element).find("span").text();
+                if (key && value) {
+                    result[key] = value;
+                }
+            }
+        }
+
+        return result;
     }
 
 }

@@ -43,10 +43,17 @@ export class FundController {
         return this.FundService.queryCodeAddFundAll(code);
     }
 
+    @Get("/findFundInfoById")
+    /**
+     * findFundInfoById
+     */
+    public async findFundInfoById(@Query() { id }) {
+        return this.FundService.findFundInfoById(id);
+    }
+
     @Get("/:id")
     public async requestFundList(@Param() { id }) {
         return this.FundService.fund(id);
     }
-
 
 }
