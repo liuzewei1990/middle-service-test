@@ -24,7 +24,7 @@
     "@nestjs/testing": "^5.0.0-beta.6",
     "@nestjs/typeorm": "^5.0.0",
     "@nestjs/websockets": "^5.0.0-beta.6",
-    "ajv": "^6.5.1",
+    "ajv": "^6.12.3",
     "cheerio": "^1.0.0-rc.3",
     "fastify-formbody": "^2.0.0",
     "iconv-lite": "^0.6.2",
