@@ -28,7 +28,7 @@
     "cheerio": "^1.0.0-rc.3",
     "fastify-formbody": "^2.0.0",
     "iconv-lite": "^0.6.2",
-    "mongoose": "^5.1.5",
+    "mongoose": "^5.7.5",
     "reflect-metadata": "^0.1.12",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
